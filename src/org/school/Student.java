@@ -10,19 +10,16 @@ public class Student {
     private int numberOfCredits;
     private double gpa;
 
-    public Student(String name, int studentId, int numberOfCredits, double gpa) {
+    public Student(int studentId) {
         this.studentId = studentId;
-        this.name = name;
-        this.gpa = gpa;
-        this.numberOfCredits = numberOfCredits;
     }
 
     public String getName(){
         return name;
     }
 
-    private void setName(String aName){
-        name = aName;
+    private void setName(String name){
+        this.name = name;
     }
 
     public int getStudentId(){
@@ -33,16 +30,16 @@ public class Student {
         return numberOfCredits;
     }
 
-    private void setNumberOfCredits(int aNumberOfCredits){
-        numberOfCredits = aNumberOfCredits;
+    private void setNumberOfCredits(int numberOfCredits){
+        this.numberOfCredits = numberOfCredits;
     }
 
     public double getGpa(){
         return gpa;
     }
 
-    private void setGpa(double aGpa){
-        gpa = aGpa;
+    private void setGpa(double gpa){
+        this.gpa = gpa;
     }
 
 }
