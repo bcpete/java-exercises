@@ -33,4 +33,14 @@ public class Course {
     public void setStudents(ArrayList<Student> students) {
         this.students = students;
     }
+
+    @Override
+    public String toString(){
+        return name + " (Course Number :" + courseNumber
+                + ", Students: " + getStudents() +")";
+    }
+
+    public boolean equals(Course course) {
+        return name.equals(course.name);
+    }
 }

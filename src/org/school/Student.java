@@ -5,13 +5,31 @@ package org.school;
  */
 public class Student {
 
+    public static final String FRESHMAN  = "Freshman";
+    public static final String SOPHOMORE = "Sophomore";
+    public static final String JUNIOR    = "Junior";
+    public static final String SENIOR    = "Senior";
+
+    private static int nextStudentId = 1;
+    private double totalQualityScore;
     private String name;
     private final int studentId;
     private int numberOfCredits;
-    private double gpa;
 
-    public Student(int studentId) {
+    public Student(String name, int studentId, int numberOfCredits, double gpa) {
+        this.name = name;
         this.studentId = studentId;
+        this.numberOfCredits = numberOfCredits;
+        this.totalQualityScore = gpa * numberOfCredits;
+    }
+
+    public Student(String name, int studentId){
+        this(name, studentId, 0, 0);
+    }
+
+    public Student(String name){
+        this(name, nextStudentId);
+        nextStudentId++;
     }
 
     public String getName(){
@@ -35,11 +53,35 @@ public class Student {
     }
 
     public double getGpa(){
+        double gpa = totalQualityScore / getNumberOfCredits();
         return gpa;
     }
 
-    private void setGpa(double gpa){
-        this.gpa = gpa;
+    public void addGrade(int courseCredits, double grade){
+        this.numberOfCredits += courseCredits;
+        this.totalQualityScore += grade * courseCredits;
+    }
+
+    public String getGradeLevel(int numberOfCredits){
+        if(numberOfCredits >=90){
+            return SENIOR;
+        }else if(numberOfCredits >=60){
+            return JUNIOR;
+        }else if(numberOfCredits >=30){
+            return SOPHOMORE;
+        }else {
+            return FRESHMAN;
+        }
+    }
+
+    @Override
+    public String toString(){
+        return name+ " (Credits :" + numberOfCredits
+                + ", GPA: " + getGpa() +")";
+    }
+
+    public boolean equals(Student student) {
+        return studentId == student.studentId;
     }
 
 }
