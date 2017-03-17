@@ -11,9 +11,21 @@ public class MenuItem {
     private String description;
     private String category;
     private double price;
-    private boolean isNew;
     private LocalDateTime created;
 
+    public MenuItem(String name, String description, String category, double price,
+                    LocalDateTime created) {
+        this.name = name;
+        this.description = description;
+        this.category = category;
+        this.price = price;
+        this.created = created.now();
+
+    }
+
+    public LocalDateTime getCreated() {
+        return created;
+    }
 
     public String getName(){
         return name;
@@ -47,12 +59,12 @@ public class MenuItem {
         this.price = price;
     }
 
-    public boolean getIsNew(){
-        return isNew;
+    @Override
+    public String toString(){
+        return "Name: " + name + "\nDescription: " + getDescription()
+                + "\nCategory: " + getCategory() + "\nPrice: " + getPrice() +
+                "\nWhen item was added to menu: " + getCreated();
     }
 
-    private void setIsNew(boolean isNew){
-        this.isNew = isNew;
-    }
 
 }
